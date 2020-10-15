@@ -1,5 +1,6 @@
 :root {
     --brand-color: #7d98d3;
+    --brand-color-tp: #7d98d3ab;
     --brand-font: 'American Typewriter';
     --main-font: 'Raleway', sans-serif;
 }
@@ -40,13 +41,15 @@ main {
     flex-grow: 1;
     flex-direction: column;
     font-family: var(--main-font);
-    padding: 0 0 150px 0;
+    padding: 75px 0 150px 0;
     background-size: cover;
+    font-size: 30px;
 }
 
 #mainTitle {
     font-size: 30px;
     padding: 0 300px 10px 0;
+    font-weight: 100;
 }
 
 footer {
@@ -72,6 +75,21 @@ footer {
     font-style: italic;
 }
 
+section > article {
+    background-color: var(--brand-color-tp);
+    width: 300px;
+    height: 50px;
+    border-radius: 12px;
+    font-family: var(--main-font);
+    font-size: 20px;
+    margin: 10px;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 #submitBtn {
     background-color: #272b2c85;
     width: 100px;
@@ -81,6 +99,6 @@ footer {
     color: white;
 }
 
-#submitBtn:hover {
+#submitBtn:hover, .cityResult:hover {
     background-color: var(--brand-color);
 }
