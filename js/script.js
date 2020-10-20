@@ -102,14 +102,15 @@ function generateList() {
     cuisineDropdownList = cuisineResults.cuisines.map(function(cuisine) {
       return cuisine.cuisine.cuisine_name;
     })
-    // TODO: ADD THIS WHEN YOU ARE DOING THE FILTER FUNCTION
-    //$form.fadeIn(100);
-    
+    // BRINGS BACK INPUT FOR CUISINE FILTER
+    $form.fadeIn(100);
+    $input.attr('onkeyup', 'filterFunction()');
     $input.attr('placeholder','Filter cuisines here by name');
+    // RENDERS CUISINE LIST
     return cuisineResults.cuisines.map(function(cuisine) {
       return`
         <article class="cuisineResult" data-cuisineid="${cuisine.cuisine.cuisine_id}">
-          <p class="cuisineName">${cuisine.cuisine.cuisine_name}</p>
+          <p class="cuisineName" id="${cuisine.cuisine.cuisine_name}">${cuisine.cuisine.cuisine_name}</p>
         </article>`;
     })
   } else if (step == 'restaurant') {
@@ -141,6 +142,25 @@ function generateList() {
 }
 
 
+function filterFunction() {
+  let filter = $input.val().toUpperCase();
+  $cuisineResult.each(function(i) {
+    if ($cuisineResult[i].innerText.toUpperCase().indexOf(filter) > -1)
+    {
+      console.log(`${i}, this cuisine contains this value`);
+      $(this).css('display', 'flex');
+    }
+    else {
+      $(this).css('display', 'none');
+    }
+    /* if ( (this).text(indexOf(filter) > -1) {
+      $(this).css('display', 'flex');
+    } else {
+      $(this).css('display', 'none');
+    }*/
+  })
+}
+
 /*
 
 TODO: ADD FILTER FUNTION
@@ -158,6 +178,9 @@ function filterFunction() {
     }
   }
 }
+
+
+IF selected value inner string has .indexOf('input')
 
 */
 
