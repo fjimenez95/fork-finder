@@ -18,7 +18,11 @@ A simple solution to help users find resturant establishments in the city of cho
 
 
 ### COMPLETED PROJECT
-![image](PENDING)
+![image](https://i.imgur.com/aVSxToX.png)
+![image](https://i.imgur.com/MXunwIA.png)
+![image](https://i.imgur.com/6XrmdRY.png)
+![image](https://i.imgur.com/dyqX3EZ.png)
+![image](https://i.imgur.com/Wi2F8L2.png)
 
 ### FUTURE ENHANCEMENTS
 - Add search filter for cuisines (DONE)
