@@ -8,6 +8,7 @@ A simple solution to help users find resturant establishments in the city of cho
 - Google Fonts
 - Open API: Zomato
 
+
 ## SCREENSHOTS
 
 ### WIREFRAME
@@ -16,13 +17,18 @@ A simple solution to help users find resturant establishments in the city of cho
 ![image](https://i.imgur.com/OdHjlGr.png)
 ![image](https://i.imgur.com/a6btCVm.png)
 
-
 ### COMPLETED PROJECT
 ![image](https://i.imgur.com/aVSxToX.png)
 ![image](https://i.imgur.com/MXunwIA.png)
 ![image](https://i.imgur.com/6XrmdRY.png)
 ![image](https://i.imgur.com/dyqX3EZ.png)
 ![image](https://i.imgur.com/Wi2F8L2.png)
+
+
+## PRODUCTION
+
+### DEPLOYED PROJECT LINK
+https://fjimenez95.github.io/fork-finder/
 
 ### FUTURE ENHANCEMENTS
 - Add search filter for cuisines (DONE)
