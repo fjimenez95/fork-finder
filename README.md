@@ -18,11 +18,11 @@ A simple solution to help users find resturant establishments in the city of cho
 ![image](https://i.imgur.com/a6btCVm.png)
 
 ### COMPLETED PROJECT
-![image](https://i.imgur.com/aVSxToX.png)
-![image](https://i.imgur.com/MXunwIA.png)
-![image](https://i.imgur.com/6XrmdRY.png)
-![image](https://i.imgur.com/dyqX3EZ.png)
-![image](https://i.imgur.com/Wi2F8L2.png)
+![image](https://i.imgur.com/wwHCWw7.png)
+![image](https://i.imgur.com/ZnBBGCU.png)
+![image](https://i.imgur.com/9g4B4wq.png)
+![image](https://i.imgur.com/Al0mwCT.png)
+![image](https://i.imgur.com/d95g2g9.png)
 
 
 ## PRODUCTION
@@ -32,7 +32,10 @@ https://fjimenez95.github.io/fork-finder/
 
 ### FUTURE ENHANCEMENTS
 - Add search filter for cuisines (DONE)
+- Add a start new seach button (DONE)
 - Change when it says RATING 0 to No recorded rating
 - Add a back button to change city or cuisine
 - A drop down to allow you to sort by cost / rating
 - Add more than 20 results to search
+- Add proxy server
+- Fix when you enter a city without a match - you get stuck
