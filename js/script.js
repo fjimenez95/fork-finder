@@ -8,19 +8,14 @@ let cuisineDropdownList;
 let CITY_ID;
 let CUISINE_ID;
 let restaurantResults;
-const CITYAPI = {
-  dataType: 'json',
-  url: `https://developers.zomato.com/api/v2.1/cities?q=${CITY_INPUT}`,
-  headers: {
-    'user-key': '23701d91eca9f047dee1c0d369818987'
-  },
-}
 
 // ***** CACHED ELEMENT REFERENCES *****
 let $form = $('form');
 let $formInput = $('#inputBar')
 let $input = $('input[type="text"]');
+//let $formSubmit = $('input[type="submit"]');
 let $mainTitle = $('#mainTitle');
+let $mainHeader = $('.mainHeader');
 let $listEl = $('#list');
 let $cityResult;
 let $cuisineResult;
@@ -42,7 +37,7 @@ function handleGetCity(event) {
       dataType: 'json',
       url: `https://developers.zomato.com/api/v2.1/cities?q=${CITY_INPUT}`,
       headers: {
-      'user-key': '23701d91eca9f047dee1c0d369818987'
+      'user-key': '8a7a179a36a4a14423468c3906678747'
       }
     })
     .then(function(response) {
@@ -72,7 +67,7 @@ function defineData(city) {
 
 function cityResultRender() {
   // FADES OUT INPUT BAR
-  $form.fadeOut(0);
+  $form.css('display', 'none');
   // CLEARS DATA IN INPUT BAR
   $input.val('');
   // CHANGES TITLE TO CHOOSE YOUR CITYs
@@ -103,9 +98,12 @@ function generateList() {
       return cuisine.cuisine.cuisine_name;
     })
     // BRINGS BACK INPUT FOR CUISINE FILTER
-    $form.fadeIn(100);
+    //$form.html('<input id="inputBar" type="text" placeholder="Filter cuisine results here" onkeyup="filterFunction()">');
+    $form.css('display', 'flex');
     $input.attr('onkeyup', 'filterFunction()');
     $input.attr('placeholder','Filter cuisines here by name');
+
+
     // RENDERS CUISINE LIST
     return cuisineResults.cuisines.map(function(cuisine) {
       return`
@@ -132,9 +130,9 @@ function generateList() {
           <p class="secondTitle">HIGHLIGHTS</p>
           <p class="restaurantHighlights">${restaurant.restaurant.highlights.join(`, `)}</p>
           </div>
-          <div class="restaurantFooter">
-          <p class="thirdTitle">CALL</p>
-          <p class="thirdTitle" id="right-box">MENU</p>
+          <div class="restaurantFooter" href="tel:8135977197">
+          <p class="thirdTitle" data-url="tel:${restaurant.restaurant.phone_numbers}">CALL</p>
+          <p class="thirdTitle" id="right-box" data-url="${restaurant.restaurant.url}">WEBSITE</p>
           </div>
         </article>`;
     })
@@ -197,7 +195,7 @@ function handleGetCuisine(event) {
     dataType: 'json',
     url: `https://developers.zomato.com/api/v2.1/cuisines?city_id=${CITY_ID}`,
     headers: {
-    'user-key': '23701d91eca9f047dee1c0d369818987'
+    'user-key': '8a7a179a36a4a14423468c3906678747'
     }
     })
     .then(function(response) {
@@ -213,8 +211,19 @@ function handleGetCuisine(event) {
 function renderCuisines() {
   // CHANGES STEP SO generateList() KNOWS WHAT TO DO
   step = 'cuisine';
-  // CHANGES TITLE TO CUISINE
+
+  // CHANGES TITLE TO CUISINE / MAIN HEADER
   $mainTitle.text(`Choose your cuisine:`);
+  $mainHeader.css('display', 'grid');
+  $mainHeader.css('grid-template-columns', '2fr 1fr');
+  $mainHeader.css('width', '800px');
+  $('#submitBtn').css('display', 'none');
+  $formInput.css('width','300px');
+  $formInput.css('height','30px');
+  $formInput.css('font-size','15px');
+  $formInput.css('padding','10px');
+  $formInput.css('border-radius','5px');
+
 
   // UPDATES CSS TO FIT ALL BOXES OF CUISINE
   $('#list').css('display', 'grid');
@@ -240,17 +249,38 @@ function handleGetRestaurants(event) {
   if (CUISINE_ID) {
     $.ajax({
     dataType: 'json',
-    // TODO: URL TO BE UPDATED
     url: `https://developers.zomato.com/api/v2.1/search?entity_id=${CITY_ID}&entity_type=city&cuisines=${CUISINE_ID}&order=asc`,
     headers: {
-    'user-key': '23701d91eca9f047dee1c0d369818987'
+    'user-key': '8a7a179a36a4a14423468c3906678747'
     }
     })
     .then(function(response) {
       console.log(response);
       restaurantResults = response;
-      // TODO: CREATE RENDER RESTAURANT FUNCTION
       renderRestaurants();
+      $('.thirdTitle').on('click', function(event) {
+        window.open(`${event.target.dataset.url}`, '_blank');
+      })
+
+      //window.open("", "MsgWindow", "width=200,height=100");
+
+
+/*    let resultCounter = response.results_found;
+      let resultStart = 20;
+      resultCounter -= 20;
+      while (resultCounter > 0) {
+        $.ajax({
+          dataType: 'json',
+          url: `https://developers.zomato.com/api/v2.1/search?entity_id=${CITY_ID}&entity_type=city&cuisines=${CUISINE_ID}&order=asc${resultStart}`,
+          headers: {
+          'user-key': '8a7a179a36a4a14423468c3906678747'
+          }
+          })
+
+      }
+
+*/
+
     })
 
 }}
@@ -263,6 +293,7 @@ function renderRestaurants() {
   $('#list').css('grid-template-rows', '');
   $('#list').css('flex-wrap', '');
   $('#list').css('flex-direction', 'column');
+  $form.css('display', 'none');
 
   // CACHED RESTAURANT ELEMENTS
   $restaurants = $('article');
@@ -284,7 +315,8 @@ function renderRestaurants() {
   $restaurants.css('grid-template-columns', '1fr');
   $restaurants.css('grid-template-rows', '1fr 1fr 50px');
   $mainTitle.text(`Results (${restaurantResults.results_shown})`);
-  $mainTitle.css('width', '600px');
+  //$mainTitle.css('width', '600px');
+  $mainHeader.css('width', '600px');
 }
 
 
@@ -319,3 +351,29 @@ function typeWriter() {
       setTimeout(typeWriter, speed);
   }
 }
+
+
+// ******** PROXY SERVER TESTING ********
+
+$.ajax('https://proxy-fork.herokuapp.com/city-api')
+.then(function(data) {
+  console.log(data);
+}, function(error) {
+  console.log(error);
+})
+
+/*
+
+$.ajax({
+  dataType: 'json',
+  url: `https://developers.zomato.com/api/v2.1/search?entity_id=292&entity_type=city&cuisines=1&establishment_type=18&sort=cost&start=20&count=20`,
+  headers: {
+  'user-key': '8a7a179a36a4a14423468c3906678747'
+  }
+  })
+  .then(function(response) {
+    console.log(response);
+  });
+
+
+  */
