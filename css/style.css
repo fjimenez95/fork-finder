@@ -49,7 +49,7 @@ main {
 
 #mainTitle {
     font-size: 30px;
-    padding: 0 300px 10px 0;
+    padding: 0 0px 10px 0;
     font-weight: 100;
 }
 
@@ -102,7 +102,6 @@ section > article {
 .thirdTitle:hover {
     background-color: var(--brand-color-tp);
     color: white;
-    /* TODO: REMOVE SPACE BELOW BUTTONS - IDK HOW TO DO THIS */
 }
 
 article:hover, .cityResult:hover, #submitBtn:hover {
